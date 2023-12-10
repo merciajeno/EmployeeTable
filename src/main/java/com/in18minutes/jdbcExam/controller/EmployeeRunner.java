@@ -14,8 +14,10 @@ public class EmployeeRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		repository.insert(new Employee(10001,"Mercia Jeno",5000000));
-		repository.insert(new Employee(10002,"Mercia Jeno I",5000000));
+		repository.insert(new Employee(10002,"Shania",50000));
+		repository.insert(new Employee(10003,"Merline",50));
 		repository.delete(10002);
+		System.out.println(repository.findById(10003));
 		
 	}
 

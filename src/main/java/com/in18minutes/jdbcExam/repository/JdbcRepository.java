@@ -1,6 +1,7 @@
 package com.in18minutes.jdbcExam.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,12 @@ public class JdbcRepository {
 			delete from employee 
 			where id = ?;
 			""";
+	
+	private String SELECT_QUERY="""
+			select * from employee
+			where id = ?;
+			""";
+	
 	public void insert(Employee emp)
 	{
 		employeeTemplate.update(INSERT_QUERY,emp.getId(),emp.getEmployeeName(),emp.getEmployeeSalary());
@@ -28,6 +35,12 @@ public class JdbcRepository {
 	public void delete(int id)
 	{
 		employeeTemplate.update(DELETE_QUERY,id);
+	}
+	
+	public Employee findById(int id)
+	{
+		return 
+				employeeTemplate.queryForObject(SELECT_QUERY, new BeanPropertyRowMapper<>(Employee.class), id);
 	}
 
 }

@@ -14,6 +14,11 @@ public class Employee {
 		this.employeeName = employeeName;
 		this.employeeSalary = employeeSalary;
 	}
+	public Employee()
+	{
+		super();
+	}
+	
 	public int getId() {
 		return id;
 	}
